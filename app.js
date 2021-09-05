@@ -1,6 +1,16 @@
-const _ = require("lodash");
+const { readFile, writeFile } = require("fs").promises;
+const util = require("util");
+const readFilePromise = util.promisify(readFile);
+const writeFilePromise = util.promisify(readFile);
 
-const items = [1, [2, [3, [4]]]];
+const start = async () => {
+  try {
+    const first = await readFile("./content/first.txt", "utf8");
+    const second = await readFile("./content/first.txt", "utf8");
+    console.log(first, second);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-const newItems = _.flattenDeep(items);
-console.log(newItems);
+start();
